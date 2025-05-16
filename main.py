@@ -66,9 +66,7 @@ async def optimize_portfolio(
         }
 
         return JSONResponse(content={
-            "optimized_weights": optimized_portfolio,
-            "expected_return": round(float(np.dot(weights, mean_returns)), 4),
-            "expected_risk": round(float(np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights)))), 4)
+            "optimal_portfolio": optimized_portfolio
         })
 
     except Exception as e:
