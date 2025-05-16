@@ -16,7 +16,9 @@ async def optimize_portfolio(
     try:
         # Leer el archivo CSV
         contents = await file.read()
-        df = pd.read_csv(BytesIO(contents))
+        df = pd.read_csv(BytesIO(contents), index_col=0, parse_date=True, date_format="%Y-%m-%d")
+        df = df.dropna(how="all")
+        df = df.fillna(0)  # llena retornos vacios con 0s
 
         # Validación de datos
         if df.isnull().values.any():
